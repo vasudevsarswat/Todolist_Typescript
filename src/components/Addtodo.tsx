@@ -15,6 +15,7 @@ const Addtodo = () => {
     if (todo.trim() !== '') { 
       handleAddToDo(todo);
       setTodo('');
+      setErrors('')
     }
     else{
       setErrors("Task Must contain value")
@@ -34,6 +35,7 @@ const Addtodo = () => {
               fullWidth
               value={todo}
               onChange={(e) => setTodo(e.target.value)}
+              error={!!errors} 
               helperText={errors}
             />
           </Grid>
