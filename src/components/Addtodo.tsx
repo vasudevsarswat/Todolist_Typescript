@@ -8,11 +8,17 @@ import Grid from '@mui/material/Grid';
 const Addtodo = () => {
   const [todo, setTodo] = useState('');
   const { handleAddToDo } = useTodos();
+  const [errors, setErrors] = useState('');
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    handleAddToDo(todo);
-    setTodo('');
+    if (todo.trim() !== '') { 
+      handleAddToDo(todo);
+      setTodo('');
+    }
+    else{
+      setErrors("Task Must contain value")
+    }
   };
 
   return (
@@ -28,6 +34,7 @@ const Addtodo = () => {
               fullWidth
               value={todo}
               onChange={(e) => setTodo(e.target.value)}
+              helperText={errors}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
